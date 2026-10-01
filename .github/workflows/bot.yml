@@ -1,0 +1,25 @@
+name: Minecraft NPC Bot
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+    - name: Clonar repositorio
+      uses: actions/checkout@v4
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Instalar Mineflayer
+      run: npm install mineflayer
+
+    - name: Ejecutar NPC
+      run: node bot.js
